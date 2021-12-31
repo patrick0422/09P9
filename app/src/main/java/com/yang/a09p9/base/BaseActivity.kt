@@ -13,10 +13,17 @@ abstract class BaseActivity<B : ViewDataBinding>(@LayoutRes private val layoutRe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        preLoad()
+
         binding = DataBindingUtil.setContentView(this, layoutResId)
         binding.lifecycleOwner = this@BaseActivity
 
         init()
+    }
+
+    open fun preLoad() {
+
     }
 
     abstract fun init()
@@ -24,7 +31,7 @@ abstract class BaseActivity<B : ViewDataBinding>(@LayoutRes private val layoutRe
     override fun onBackPressed() {
         if (System.currentTimeMillis() - waitTime >= 1500) {
             waitTime = System.currentTimeMillis()
-            makeToast("뒤로가기 버튼을 한번 더 누르면 종료됩니다")
+            makeToast("한 번 더 눌러 종료됩니다")
         } else finish()
     }
 

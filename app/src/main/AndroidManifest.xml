@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.09P9">
+        android:theme="@style/Theme.09P9.SplashScreen">
         <activity
             android:name="com.yang.a09p9.MainActivity"
             android:exported="true">
