@@ -2,7 +2,12 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+
+    // Hilt
     id 'dagger.hilt.android.plugin'
+
+    // Firebase SDK
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -51,4 +56,12 @@ dependencies {
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+
+    // Firebase BoM / Firebase Android BoM을 사용하면 앱에서 항상 호환되는 Firebase 라이브러리 버전을 사용
+    implementation platform('com.google.firebase:firebase-bom:29.0.3')
+
+    // Google Analytics / Firebase BoM 사용 시 버전 명시 X
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
 }
