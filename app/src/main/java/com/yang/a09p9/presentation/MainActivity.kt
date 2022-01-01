@@ -1,8 +1,9 @@
-package com.yang.a09p9
+package com.yang.a09p9.presentation
 
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseActivity
 import com.yang.a09p9.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
