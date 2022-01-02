@@ -19,9 +19,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun init() {
         thread(start=true) {
-            for (i in 1..5) {
-                Thread.sleep(1000)
-            }
+            Thread.sleep(2000)
             isReady = true
         }
 
