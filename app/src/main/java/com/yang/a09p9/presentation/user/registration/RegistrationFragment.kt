@@ -13,11 +13,13 @@ class RegistrationFragment  : BaseFragment<FragmentRegistrationBinding>(R.layout
 
     override fun init() {
         binding.registrationFragment = this
+
+
     }
 
     fun toLogin() = findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
 
-//    fun toTerms() = findNavController().navigate(R.id.action_)
-    
+    fun toTerms() = findNavController().navigate(R.id.action_registrationFragment_to_termsFragment)
+
     fun onRegister() { startActivity(Intent(requireContext(), MainActivity::class.java)) }
 }

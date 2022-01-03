@@ -22,5 +22,13 @@
         <action
             android:id="@+id/action_registrationFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registrationFragment_to_termsFragment"
+            app:destination="@id/termsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/termsFragment"
+        android:name="com.yang.a09p9.TermsFragment"
+        android:label="fragment_terms"
+        tools:layout="@layout/fragment_terms" />
 </navigation>
