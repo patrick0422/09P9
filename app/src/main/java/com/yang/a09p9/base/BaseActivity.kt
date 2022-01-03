@@ -6,6 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.yang.a09p9.R
 
 abstract class BaseActivity<B : ViewDataBinding>(@LayoutRes private val layoutResId: Int) : AppCompatActivity() {
     lateinit var binding: B
@@ -16,6 +17,7 @@ abstract class BaseActivity<B : ViewDataBinding>(@LayoutRes private val layoutRe
 
         preLoad()
 
+        setTheme(R.style.Theme_09P9)
         binding = DataBindingUtil.setContentView(this, layoutResId)
         binding.lifecycleOwner = this@BaseActivity
 
