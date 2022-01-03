@@ -1,16 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.user.registration.RegistrationFragment">
 
     <data>
-
+        <variable
+            name="registrationFragment"
+            type="com.yang.a09p9.presentation.user.registration.RegistrationFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".RegistrationFragment">
+        android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/image_logo"
+                android:layout_width="190dp"
+                android:layout_height="150dp"
+                android:contentDescription="@string/logo_description"
+                android:src="@drawable/ic_09p9_logo_shadowed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:autofillHints="emailAddress"
+                android:background="@drawable/style_edittext_rounded"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_logo" />
+
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:autofillHints="name"
+                android:background="@drawable/style_edittext_rounded"
+                android:hint="@string/hint_name"
+                android:inputType="text"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="@+id/editEmail"
+                app:layout_constraintStart_toStartOf="@+id/editEmail"
+                app:layout_constraintTop_toBottomOf="@+id/editEmail" />
+
+            <EditText
+                android:id="@+id/editPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:autofillHints="password"
+                android:background="@drawable/style_edittext_rounded"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="@+id/editName"
+                app:layout_constraintStart_toStartOf="@+id/editName"
+                app:layout_constraintTop_toBottomOf="@+id/editName" />
+
+            <EditText
+                android:id="@+id/editPasswordCheck"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:autofillHints="password"
+                android:background="@drawable/style_edittext_rounded"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="@+id/editPassword"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/editPassword"
+                app:layout_constraintTop_toBottomOf="@+id/editPassword" />
+
+            <CheckBox
+                android:id="@+id/checkTermsAgreement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_agreement"
+                app:buttonTint="@color/blue_09p9"
+                app:layout_constraintEnd_toEndOf="@+id/editPasswordCheck"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/editPasswordCheck"
+                app:layout_constraintTop_toBottomOf="@+id/editPasswordCheck" />
+
+            <ImageButton
+                android:id="@+id/buttonTerms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="#00000000"
+                android:src="@drawable/ic_right"
+                android:onClick="@{() -> registrationFragment.toTerms()}"
+                app:layout_constraintBottom_toBottomOf="@+id/checkTermsAgreement"
+                app:layout_constraintEnd_toEndOf="@+id/buttonRegister"
+                app:layout_constraintTop_toTopOf="@+id/checkTermsAgreement" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/style_button_rounded"
+                android:paddingVertical="16dp"
+                android:text="@string/registration"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:onClick="@{() -> registrationFragment.onRegister()}"
+                app:layout_constraintEnd_toEndOf="@+id/editPasswordCheck"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/editPasswordCheck"
+                app:layout_constraintTop_toBottomOf="@+id/checkTermsAgreement" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:onClick="@{() -> registrationFragment.toLogin()}"
+                android:text="@string/goto_login"
+                android:textColor="@color/blue_09p9"
+                app:layout_constraintEnd_toEndOf="@+id/buttonRegister"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="@+id/buttonRegister"
+                app:layout_constraintTop_toBottomOf="@+id/buttonRegister" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
