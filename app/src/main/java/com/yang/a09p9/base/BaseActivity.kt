@@ -22,16 +22,14 @@ abstract class BaseActivity<B : ViewDataBinding>(@LayoutRes private val layoutRe
         init()
     }
 
-    open fun preLoad() {
-
-    }
+    open fun preLoad() {}
 
     abstract fun init()
 
     override fun onBackPressed() {
         if (System.currentTimeMillis() - waitTime >= 1500) {
             waitTime = System.currentTimeMillis()
-            makeToast("한 번 더 눌러 종료됩니다")
+            makeToast("한 번 더 눌러 종료합니다")
         } else finish()
     }
 

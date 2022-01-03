@@ -41,7 +41,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
         }
 
-        thread(start=true) {
+        thread(start = true) {
             Thread.sleep(1000)
             isReady = true
         }
