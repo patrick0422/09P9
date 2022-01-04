@@ -5,6 +5,7 @@
     tools:context=".presentation.user.registration.RegistrationFragment">
 
     <data>
+
         <variable
             name="registrationFragment"
             type="com.yang.a09p9.presentation.user.registration.RegistrationFragment" />
@@ -48,6 +49,34 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image_logo" />
 
+            <ImageView
+                android:id="@+id/imageEmailWarning"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/warning"
+                android:src="@drawable/ic_info"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/editEmail"
+                app:layout_constraintHorizontal_bias="0.00"
+                app:layout_constraintStart_toStartOf="@+id/editEmail"
+                app:layout_constraintTop_toBottomOf="@+id/editEmail"
+                app:tint="@color/red_09p9" />
+
+            <TextView
+                android:id="@+id/textEmailWarning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="@string/message_error_email_format"
+                android:textColor="@color/red_09p9"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/imageEmailWarning"
+                app:layout_constraintStart_toEndOf="@+id/imageEmailWarning"
+                app:layout_constraintTop_toTopOf="@+id/imageEmailWarning"
+                app:layout_constraintVertical_bias="1.0" />
+
             <EditText
                 android:id="@+id/editName"
                 android:layout_width="300dp"
@@ -60,7 +89,7 @@
                 android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="@+id/editEmail"
                 app:layout_constraintStart_toStartOf="@+id/editEmail"
-                app:layout_constraintTop_toBottomOf="@+id/editEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/imageEmailWarning" />
 
             <EditText
                 android:id="@+id/editPassword"
@@ -76,6 +105,33 @@
                 app:layout_constraintStart_toStartOf="@+id/editName"
                 app:layout_constraintTop_toBottomOf="@+id/editName" />
 
+            <ImageView
+                android:id="@+id/imagePasswordWarning"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/warning"
+                android:src="@drawable/ic_info"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/editPassword"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/editPassword"
+                app:layout_constraintTop_toBottomOf="@+id/editPassword"
+                app:tint="@color/red_09p9" />
+
+            <TextView
+                android:id="@+id/textPasswordWarning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="@string/message_error_pasword"
+                android:textColor="@color/red_09p9"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/imagePasswordWarning"
+                app:layout_constraintStart_toEndOf="@+id/imagePasswordWarning"
+                app:layout_constraintTop_toTopOf="@+id/imagePasswordWarning" />
+
             <EditText
                 android:id="@+id/editPasswordCheck"
                 android:layout_width="0dp"
@@ -83,13 +139,41 @@
                 android:layout_marginTop="8dp"
                 android:autofillHints="password"
                 android:background="@drawable/style_edittext_rounded"
-                android:hint="@string/hint_password"
+                android:hint="@string/hint_password_check"
                 android:inputType="textPassword"
                 android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="@+id/editPassword"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/editPassword"
-                app:layout_constraintTop_toBottomOf="@+id/editPassword" />
+                app:layout_constraintTop_toBottomOf="@+id/imagePasswordWarning" />
+
+            <ImageView
+                android:id="@+id/imagePasswordCheckWarning"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/warning"
+                android:src="@drawable/ic_info"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/editPasswordCheck"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/editPasswordCheck"
+                app:layout_constraintTop_toBottomOf="@+id/editPasswordCheck"
+                app:tint="@color/red_09p9" />
+
+            <TextView
+                android:id="@+id/textPasswordCheckWarning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="@string/message_error_password_check"
+                android:textColor="@color/red_09p9"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/imagePasswordCheckWarning"
+                app:layout_constraintStart_toEndOf="@+id/imagePasswordCheckWarning"
+                app:layout_constraintTop_toTopOf="@+id/imagePasswordCheckWarning" />
+
 
             <CheckBox
                 android:id="@+id/checkTermsAgreement"
@@ -100,16 +184,17 @@
                 app:layout_constraintEnd_toEndOf="@+id/editPasswordCheck"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/editPasswordCheck"
-                app:layout_constraintTop_toBottomOf="@+id/editPasswordCheck" />
+                app:layout_constraintTop_toBottomOf="@+id/imagePasswordCheckWarning" />
 
             <ImageButton
                 android:id="@+id/buttonTerms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:background="#00000000"
-                android:src="@drawable/ic_right"
+                android:contentDescription="@string/terms_detail"
                 android:onClick="@{() -> registrationFragment.toTerms()}"
+                android:padding="5dp"
+                android:src="@drawable/ic_right"
                 app:layout_constraintBottom_toBottomOf="@+id/checkTermsAgreement"
                 app:layout_constraintEnd_toEndOf="@+id/buttonRegister"
                 app:layout_constraintTop_toTopOf="@+id/checkTermsAgreement" />
@@ -119,18 +204,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style_button_rounded"
+                android:onClick="@{() -> registrationFragment.onRegister()}"
                 android:paddingVertical="16dp"
                 android:text="@string/registration"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:onClick="@{() -> registrationFragment.onRegister()}"
                 app:layout_constraintEnd_toEndOf="@+id/editPasswordCheck"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/editPasswordCheck"
                 app:layout_constraintTop_toBottomOf="@+id/checkTermsAgreement" />
 
             <TextView
+                android:id="@+id/textGoLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -143,5 +229,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/buttonRegister" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/blue_09p9"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

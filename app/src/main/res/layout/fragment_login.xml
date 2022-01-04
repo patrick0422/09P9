@@ -53,7 +53,7 @@
                 android:id="@+id/editPassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
                 android:autofillHints="password"
                 android:background="@drawable/style_edittext_rounded"
                 android:hint="@string/hint_password"
@@ -68,19 +68,49 @@
                 android:id="@+id/buttonLogin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/style_button_rounded"
+                android:onClick="@{() -> loginFragment.onLogin()}"
                 android:paddingVertical="16dp"
                 android:text="@string/login"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:onClick="@{() -> loginFragment.onLogin()}"
                 app:layout_constraintEnd_toEndOf="@+id/editPassword"
                 app:layout_constraintStart_toStartOf="@+id/editPassword"
                 app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
+            <ImageView
+                android:id="@+id/imageAccountWarning"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/warning"
+                android:src="@drawable/ic_info"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@id/textAccountWarning"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/buttonLogin"
+                app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+                app:tint="@color/red_09p9" />
+
             <TextView
+                android:id="@+id/textAccountWarning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="@string/message_error_account"
+                android:textColor="@color/red_09p9"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/imageAccountWarning"
+                app:layout_constraintEnd_toEndOf="@+id/buttonLogin"
+                app:layout_constraintStart_toEndOf="@+id/imageAccountWarning"
+                app:layout_constraintTop_toTopOf="@+id/imageAccountWarning"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/textGoRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -90,8 +120,20 @@
                 app:layout_constraintEnd_toEndOf="@+id/buttonLogin"
                 app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="@+id/buttonLogin"
-                app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+                app:layout_constraintTop_toBottomOf="@+id/imageAccountWarning" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/blue_09p9"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
