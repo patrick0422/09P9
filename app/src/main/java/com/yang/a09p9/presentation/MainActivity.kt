@@ -8,6 +8,9 @@ import android.view.ViewTreeObserver
 import android.view.animation.AnticipateInterpolator
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseActivity
 import com.yang.a09p9.databinding.ActivityMainBinding
@@ -17,6 +20,8 @@ import kotlin.concurrent.thread
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+    private lateinit var auth : FirebaseAuth
+
     var isReady = false
 
     override fun preLoad() {
@@ -24,6 +29,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     override fun init() {
+        binding.activity = this
+        auth = Firebase.auth
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             splashScreen.setOnExitAnimationListener { splashScreenView ->
                 ObjectAnimator.ofFloat(splashScreenView, View.TRANSLATION_Y, 0f, -splashScreenView.height.toFloat()).apply {
@@ -58,5 +66,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 }
             }
         )
+    }
+
+    fun onLogout() {
+        auth.signOut()
+        makeToast("로그아웃되었습니다.")
+        startActivity(Intent(this, UserActivity::class.java))
+        finish()
     }
 }
