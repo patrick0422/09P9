@@ -35,10 +35,10 @@
         <action
             android:id="@+id/action_registrationFragment_to_termsFragment"
             app:destination="@id/termsFragment"
-            app:enterAnim="@anim/slide_in_from_bottom"
-            app:exitAnim="@anim/slide_out_to_top"
-            app:popEnterAnim="@anim/slide_in_from_top"
-            app:popExitAnim="@anim/slide_out_to_bottom"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -49,8 +49,8 @@
         <action
             android:id="@+id/action_termsFragment_to_registrationFragment"
             app:destination="@id/registrationFragment"
-            app:enterAnim="@anim/slide_in_from_top"
-            app:exitAnim="@anim/slide_out_to_bottom"
+            app:enterAnim="@anim/slide_in_from_left"
+            app:exitAnim="@anim/slide_out_to_right"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>
