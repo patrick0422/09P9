@@ -6,10 +6,10 @@ import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseFragment
 import com.yang.a09p9.databinding.FragmentRegistrationBinding
 import com.yang.a09p9.presentation.MainActivity
+import com.yang.a09p9.presentation.user.UserActivity
 
 
 class RegistrationFragment  : BaseFragment<FragmentRegistrationBinding>(R.layout.fragment_registration) {
-
 
     override fun init() {
         binding.registrationFragment = this
@@ -17,7 +17,9 @@ class RegistrationFragment  : BaseFragment<FragmentRegistrationBinding>(R.layout
 
     }
 
-    fun toLogin() = findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
+    fun toLogin() {
+        findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
+    }
 
     fun toTerms() = findNavController().navigate(R.id.action_registrationFragment_to_termsFragment)
 

@@ -26,28 +26,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun init() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             splashScreen.setOnExitAnimationListener { splashScreenView ->
-                val slideUp = ObjectAnimator.ofFloat(
-                    splashScreenView,
-                    View.TRANSLATION_Y,
-                    0f,
-                    -splashScreenView.height.toFloat()
-                )
-                slideUp.interpolator = AnticipateInterpolator()
-                slideUp.duration = 200L
-
-                // Call SplashScreenView.remove at the end of your custom animation.
-                slideUp.doOnEnd { splashScreenView.remove() }
-
-                // Run your animation.
-                slideUp.start()
+                ObjectAnimator.ofFloat(splashScreenView, View.TRANSLATION_Y, 0f, -splashScreenView.height.toFloat()).apply {
+                    interpolator = AnticipateInterpolator()
+                    duration = 200L
+                    // Call SplashScreenView.remove at the end of your custom animation.
+                    doOnEnd { splashScreenView.remove() }
+                    // Run your animation.
+                    start()
+                }
             }
         }
 
         thread(start = true) {
             Thread.sleep(1000)
             isReady = true
-
-            startActivity(Intent(this@MainActivity, UserActivity::class.java))
         }
 
         val content: View = findViewById(android.R.id.content)
