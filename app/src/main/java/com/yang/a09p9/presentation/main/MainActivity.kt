@@ -1,7 +1,6 @@
-package com.yang.a09p9.presentation
+package com.yang.a09p9.presentation.main
 
 import android.animation.ObjectAnimator
-import android.content.Intent
 import android.os.Build
 import android.view.View
 import android.view.ViewTreeObserver
@@ -14,7 +13,6 @@ import com.google.firebase.ktx.Firebase
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseActivity
 import com.yang.a09p9.databinding.ActivityMainBinding
-import com.yang.a09p9.presentation.user.UserActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.concurrent.thread
 

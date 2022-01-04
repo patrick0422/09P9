@@ -6,12 +6,11 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseFragment
 import com.yang.a09p9.databinding.FragmentLoginBinding
-import com.yang.a09p9.presentation.MainActivity
+import com.yang.a09p9.presentation.main.MainActivity
 import com.yang.a09p9.util.Constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
 

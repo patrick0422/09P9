@@ -11,7 +11,7 @@ import com.google.firebase.ktx.Firebase
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseFragment
 import com.yang.a09p9.databinding.FragmentRegistrationBinding
-import com.yang.a09p9.presentation.MainActivity
+import com.yang.a09p9.presentation.main.MainActivity
 import com.yang.a09p9.util.Constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
 
