@@ -1,4 +1,4 @@
-package com.yang.a09p9.presentation
+package com.yang.a09p9.presentation.main
 
 import android.animation.ObjectAnimator
 import android.os.Build
@@ -7,6 +7,9 @@ import android.view.ViewTreeObserver
 import android.view.animation.AnticipateInterpolator
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseActivity
 import com.yang.a09p9.databinding.ActivityMainBinding
@@ -15,6 +18,8 @@ import kotlin.concurrent.thread
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+    private lateinit var auth : FirebaseAuth
+
     var isReady = false
 
     override fun preLoad() {
@@ -22,30 +27,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     override fun init() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            splashScreen.setOnExitAnimationListener { splashScreenView ->
-                val slideUp = ObjectAnimator.ofFloat(
-                    splashScreenView,
-                    View.TRANSLATION_Y,
-                    0f,
-                    -splashScreenView.height.toFloat()
-                )
-                slideUp.interpolator = AnticipateInterpolator()
-                slideUp.duration = 200L
+        binding.activity = this
+        auth = Firebase.auth
 
-                // Call SplashScreenView.remove at the end of your custom animation.
-                slideUp.doOnEnd { splashScreenView.remove() }
+        setUpSplashScreen()
+    }
 
-                // Run your animation.
-                slideUp.start()
-            }
-        }
+    private fun setUpSplashScreen() {
+        setSplashAnimation()
+        delaySplashScreen()
+    }
 
-        thread(start = true) {
-            Thread.sleep(1000)
-            isReady = true
-        }
-
+    private fun delaySplashScreen() {
         val content: View = findViewById(android.R.id.content)
         content.viewTreeObserver.addOnPreDrawListener(
             object : ViewTreeObserver.OnPreDrawListener {
@@ -62,5 +55,25 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 }
             }
         )
+        thread(start = true) {
+            Thread.sleep(1000)
+            isReady = true
+        }
+    }
+
+
+    private fun setSplashAnimation() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            splashScreen.setOnExitAnimationListener { splashScreenView ->
+                ObjectAnimator.ofFloat(splashScreenView, View.TRANSLATION_Y, 0f, -splashScreenView.height.toFloat()).apply {
+                    interpolator = AnticipateInterpolator()
+                    duration = 200L
+                    // Call SplashScreenView.remove at the end of your custom animation.
+                    doOnEnd { splashScreenView.remove() }
+                    // Run your animation.
+                    start()
+                }
+            }
+        }
     }
 }
