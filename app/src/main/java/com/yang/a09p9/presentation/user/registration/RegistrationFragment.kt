@@ -69,7 +69,12 @@ class RegistrationFragment :
                 activity?.finish()
             }
             .addOnFailureListener {
-                makeToast(it.message ?: "알 수 없는 예외")
+                if (it.message!!.contains("already in use")) {
+                    showEmailError(true, getString(R.string.message_error_email_already_in_use))
+                } else {
+                    makeToast(it.message ?: "알 수 없는 예외")
+                }
+
                 allowInput(true)
             }
     }
@@ -96,6 +101,14 @@ class RegistrationFragment :
     }
 
     private fun showEmailError(isVisible: Boolean) = with(binding) {
+        textEmailWarning.text = getString(R.string.message_error_email_format)
+
+        imageEmailWarning.visibility = if (isVisible) View.VISIBLE else View.GONE
+        textEmailWarning.visibility = if (isVisible) View.VISIBLE else View.GONE
+    }
+    private fun showEmailError(isVisible: Boolean, message: String) = with(binding) {
+        textEmailWarning.text = message
+
         imageEmailWarning.visibility = if (isVisible) View.VISIBLE else View.GONE
         textEmailWarning.visibility = if (isVisible) View.VISIBLE else View.GONE
     }
