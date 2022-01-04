@@ -32,24 +32,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.activity = this
         auth = Firebase.auth
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            splashScreen.setOnExitAnimationListener { splashScreenView ->
-                ObjectAnimator.ofFloat(splashScreenView, View.TRANSLATION_Y, 0f, -splashScreenView.height.toFloat()).apply {
-                    interpolator = AnticipateInterpolator()
-                    duration = 200L
-                    // Call SplashScreenView.remove at the end of your custom animation.
-                    doOnEnd { splashScreenView.remove() }
-                    // Run your animation.
-                    start()
-                }
-            }
-        }
+        setUpSplashScreen()
+    }
 
-        thread(start = true) {
-            Thread.sleep(1000)
-            isReady = true
-        }
+    private fun setUpSplashScreen() {
+        setSplashAnimation()
+        delaySplashScreen()
+    }
 
+    private fun delaySplashScreen() {
         val content: View = findViewById(android.R.id.content)
         content.viewTreeObserver.addOnPreDrawListener(
             object : ViewTreeObserver.OnPreDrawListener {
@@ -66,12 +57,25 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 }
             }
         )
+        thread(start = true) {
+            Thread.sleep(1000)
+            isReady = true
+        }
     }
 
-    fun onLogout() {
-        auth.signOut()
-        makeToast("로그아웃되었습니다.")
-        startActivity(Intent(this, UserActivity::class.java))
-        finish()
+
+    private fun setSplashAnimation() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            splashScreen.setOnExitAnimationListener { splashScreenView ->
+                ObjectAnimator.ofFloat(splashScreenView, View.TRANSLATION_Y, 0f, -splashScreenView.height.toFloat()).apply {
+                    interpolator = AnticipateInterpolator()
+                    duration = 200L
+                    // Call SplashScreenView.remove at the end of your custom animation.
+                    doOnEnd { splashScreenView.remove() }
+                    // Run your animation.
+                    start()
+                }
+            }
+        }
     }
 }

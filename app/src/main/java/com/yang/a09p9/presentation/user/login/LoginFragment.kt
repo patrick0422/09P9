@@ -6,6 +6,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseFragment
@@ -21,11 +22,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
         binding.loginFragment = this
 
         auth = Firebase.auth
+
+        if (auth.currentUser != null) { // 이미 로그인 해 있는 경우
+            proceed()
+        }
     }
 
-    fun toRegister() {
-        findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
-    }
+    fun toRegister() = findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
 
     fun onLogin() {
         val emailInput = binding.editEmail.text.toString()
@@ -44,9 +47,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
 
         auth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
-                Log.d(TAG, "login: ${it.additionalUserInfo?.username}")
-                startActivity(Intent(activity, MainActivity::class.java))
-                activity?.finish()
+                proceed()
             }
             .addOnFailureListener {
                 Log.d(TAG, "login: ${it.message ?: "알 수 없는 예외"}")
@@ -71,5 +72,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
 
     private fun showProgress(isVisible: Boolean) {
         binding.progress.visibility = if (isVisible) View.VISIBLE else View.GONE
+    }
+
+    private fun proceed() {
+        startActivity(Intent(activity, MainActivity::class.java))
+        activity?.finish()
     }
 }

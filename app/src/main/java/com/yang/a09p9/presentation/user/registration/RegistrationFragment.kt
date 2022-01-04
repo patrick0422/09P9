@@ -1,15 +1,18 @@
 package com.yang.a09p9.presentation.user.registration
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseFragment
 import com.yang.a09p9.databinding.FragmentRegistrationBinding
 import com.yang.a09p9.presentation.MainActivity
+import com.yang.a09p9.util.Constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,12 +25,6 @@ class RegistrationFragment :
 
         auth = Firebase.auth
     }
-
-    fun toLogin() {
-        findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
-    }
-
-    fun toTerms() = findNavController().navigate(R.id.action_registrationFragment_to_termsFragment)
 
     fun onRegister() {
         hideErrors()
@@ -51,13 +48,22 @@ class RegistrationFragment :
         }
         else { // 정상 진행
             allowInput(false)
-            register(emailInput, passwordInput)
+            register(emailInput, passwordInput, nameInput)
         }
     }
 
-    private fun register(email: String, password: String) {
+    private fun register(email: String, password: String, name: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {
+                val profileUpdates = userProfileChangeRequest {
+                    displayName = name
+                }
+
+                auth.currentUser!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
+                    if (task.isSuccessful)
+                        Log.d(TAG, "register: update complete")
+                }
+
                 startActivity(Intent(activity, MainActivity::class.java))
                 makeToast("회원가입이 성공했습니다!")
                 activity?.finish()
@@ -103,4 +109,8 @@ class RegistrationFragment :
         imagePasswordCheckWarning.visibility = if (isVisible) View.VISIBLE else View.GONE
         textPasswordCheckWarning.visibility = if (isVisible) View.VISIBLE else View.GONE
     }
+
+    fun toLogin() = findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
+
+    fun toTerms() = findNavController().navigate(R.id.action_registrationFragment_to_termsFragment)
 }
