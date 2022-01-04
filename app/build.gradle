@@ -67,6 +67,11 @@ dependencies {
     // Google Analytics / Firebase BoM 사용 시 버전 명시 X
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
+    // Firebase Auth
+    implementation 'com.google.firebase:firebase-auth-ktx'
+
+
+
     // Core SplashScreen
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha02'
 }
