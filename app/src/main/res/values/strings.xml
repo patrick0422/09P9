@@ -9,4 +9,5 @@
     <string name="goto_login"><u>이미 계정이 있으신가요?</u></string>
     <string name="goto_registration"><u>아직 계정이 없으신가요?</u></string>
     <string name="terms_agreement">이용 약관에 동의합니다.</string>
+    <string name="terms_and_conditions">이용 약관</string>
 </resources>
