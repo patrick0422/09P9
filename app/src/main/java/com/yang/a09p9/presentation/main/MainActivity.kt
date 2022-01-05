@@ -49,6 +49,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.homeFragment,
+                R.id.recommendationFragment,
                 R.id.bookmarkFragment,
                 R.id.profileFragment
             )

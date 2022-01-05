@@ -11,6 +11,11 @@
         android:label="홈"
         tools:layout="@layout/fragment_home" />
     <fragment
+        android:id="@+id/recommendationFragment"
+        android:name="com.yang.a09p9.presentation.main.recommendation.RecommendationFragment"
+        android:label="추천"
+        tools:layout="@layout/fragment_recommendation" />
+    <fragment
         android:id="@+id/bookmarkFragment"
         android:name="com.yang.a09p9.presentation.main.bookmark.BookmarkFragment"
         android:label="북마크"

@@ -5,6 +5,10 @@
         android:title="@string/home"
         android:icon="@drawable/ic_home"/>
     <item
+        android:id="@+id/recommendationFragment"
+        android:title="@string/recommendation"
+        android:icon="@drawable/ic_recommendation"/>
+    <item
         android:id="@+id/bookmarkFragment"
         android:title="@string/bookmark"
         android:icon="@drawable/ic_bookmark"/>
