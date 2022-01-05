@@ -12,7 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="windowNoTitle">true</item>
     </style>
     <style name="Theme.09P9.SplashScreen" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/blue_09p9</item>

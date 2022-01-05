@@ -10,11 +10,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class UserActivity : BaseActivity<ActivityUserBinding>(R.layout.activity_user) {
-    lateinit var navController: NavController
+    private val navHostFragment by lazy { supportFragmentManager.findFragmentById(R.id.userFragmentContainerView) as NavHostFragment }
+    private val navController by lazy { navHostFragment.navController }
 
     override fun init() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        navController = navHostFragment.navController
-
+        supportActionBar?.hide()
     }
 }

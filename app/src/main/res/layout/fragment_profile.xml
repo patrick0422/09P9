@@ -4,25 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="profileFragment"
+            type="com.yang.a09p9.presentation.main.profile.ProfileFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.user.UserActivity">
+        tools:context=".presentation.main.profile.ProfileFragment">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/userFragmentContainerView"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:defaultNavHost="true"
+        <Button
+            android:id="@+id/buttonLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> profileFragment.onLogout()}"
+            android:text="로그아웃"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/user_nav_graph" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
