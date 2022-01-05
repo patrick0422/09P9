@@ -7,18 +7,28 @@ import android.view.ViewTreeObserver
 import android.view.animation.AnticipateInterpolator
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.google.firebase.auth.FirebaseAuth
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseActivity
 import com.yang.a09p9.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.concurrent.thread
+
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
-    private lateinit var auth : FirebaseAuth
+    private val navHostFragment by lazy { supportFragmentManager.findFragmentById(R.id.mainFragmentContainerView) as NavHostFragment }
+    private val navController by lazy { navHostFragment.navController }
+    private val auth by lazy { Firebase.auth }
 
     var isReady = false
 
@@ -28,9 +38,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun init() {
         binding.activity = this
-        auth = Firebase.auth
 
+        setupBottomNav()
         setUpSplashScreen()
+    }
+
+    private fun setupBottomNav() {
+        supportActionBar?.hide()
+
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.homeFragment,
+                R.id.bookmarkFragment,
+                R.id.profileFragment
+            )
+        )
+
+        binding.bottomNav.setupWithNavController(navController)
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
     private fun setUpSplashScreen() {
@@ -55,12 +80,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 }
             }
         )
-        thread(start = true) {
-            Thread.sleep(1000)
+        CoroutineScope(Dispatchers.IO).launch {
+            delay(1000)
             isReady = true
         }
     }
-
 
     private fun setSplashAnimation() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -76,4 +100,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
         }
     }
+
+    override fun onNavigateUp(): Boolean = navController.navigateUp() || super.onNavigateUp()
 }
