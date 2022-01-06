@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".presentation.user.registration.RegistrationFragment">
+    tools:context=".presentation.user.sign_up.SignUpFragment">
 
     <data>
 
         <variable
-            name="registrationFragment"
-            type="com.yang.a09p9.presentation.user.registration.RegistrationFragment" />
+            name="signUpFragment"
+            type="com.yang.a09p9.presentation.user.sign_up.SignUpFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -124,7 +124,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="@string/message_error_pasword"
+                android:text="@string/message_error_password"
                 android:textColor="@color/red_09p9"
                 android:textStyle="bold"
                 android:visibility="gone"
@@ -192,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:background="#00000000"
                 android:contentDescription="@string/terms_detail"
-                android:onClick="@{() -> registrationFragment.toTerms()}"
+                android:onClick="@{() -> signUpFragment.toTerms()}"
                 android:padding="5dp"
                 android:src="@drawable/ic_right"
                 app:layout_constraintBottom_toBottomOf="@+id/checkTermsAgreement"
@@ -204,9 +204,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/style_button_rounded"
-                android:onClick="@{() -> registrationFragment.onRegister()}"
+                android:onClick="@{() -> signUpFragment.onRegister()}"
                 android:paddingVertical="16dp"
-                android:text="@string/registration"
+                android:text="@string/sign_up"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -220,8 +220,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:onClick="@{() -> registrationFragment.toLogin()}"
-                android:text="@string/goto_login"
+                android:onClick="@{() -> signUpFragment.toLogin()}"
+                android:text="@string/goto_sign_in"
                 android:textColor="@color/blue_09p9"
                 app:layout_constraintEnd_toEndOf="@+id/buttonRegister"
                 app:layout_constraintHorizontal_bias="0.496"
