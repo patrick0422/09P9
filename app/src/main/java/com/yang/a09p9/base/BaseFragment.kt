@@ -23,6 +23,8 @@ abstract class BaseFragment<B : ViewDataBinding>(
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
+        setHasOptionsMenu(true)
+
         init()
 
         return binding.root
