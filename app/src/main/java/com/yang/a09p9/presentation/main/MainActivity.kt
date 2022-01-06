@@ -44,9 +44,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         setUpSplashScreen()
     }
 
-    private fun setupToolbar() {
-        binding.toolbar.setTitleTextColor(resources.getColor(R.color.white, theme))
-        setSupportActionBar(binding.toolbar)
+    private fun setupToolbar() = with(binding.toolbar) {
+        setTitleTextColor(resources.getColor(R.color.white, theme))
+        setSubtitleTextColor(resources.getColor(R.color.white, theme))
+        setSupportActionBar(this)
     }
 
     private fun setupBottomNav() {
