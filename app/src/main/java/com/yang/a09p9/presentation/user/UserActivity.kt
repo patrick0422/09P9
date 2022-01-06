@@ -1,7 +1,5 @@
 package com.yang.a09p9.presentation.user
 
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseActivity

@@ -1,4 +1,4 @@
-package com.yang.a09p9.presentation.user.login
+package com.yang.a09p9.presentation.user.sign_in
 
 import android.content.Intent
 import android.util.Log
@@ -9,16 +9,16 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseFragment
-import com.yang.a09p9.databinding.FragmentLoginBinding
+import com.yang.a09p9.databinding.FragmentSignInBinding
 import com.yang.a09p9.presentation.main.MainActivity
 import com.yang.a09p9.util.Constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login) {
+class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in) {
     private lateinit var auth : FirebaseAuth
     override fun init() {
-        binding.loginFragment = this
+        binding.signInFragment = this
 
         auth = Firebase.auth
 

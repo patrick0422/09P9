@@ -1,4 +1,4 @@
-package com.yang.a09p9.presentation.user.registration
+package com.yang.a09p9.presentation.user.sign_up
 
 import android.content.Intent
 import android.util.Log
@@ -10,18 +10,18 @@ import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseFragment
-import com.yang.a09p9.databinding.FragmentRegistrationBinding
+import com.yang.a09p9.databinding.FragmentSignUpBinding
 import com.yang.a09p9.presentation.main.MainActivity
 import com.yang.a09p9.util.Constants.TAG
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RegistrationFragment :
-    BaseFragment<FragmentRegistrationBinding>(R.layout.fragment_registration) {
+class SignUpFragment :
+    BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sign_up) {
     private lateinit var auth: FirebaseAuth
 
     override fun init() {
-        binding.registrationFragment = this
+        binding.signUpFragment = this
 
         auth = Firebase.auth
     }

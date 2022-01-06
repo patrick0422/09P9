@@ -5,6 +5,7 @@ import android.os.Build
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.animation.AnticipateInterpolator
+import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
@@ -26,11 +27,10 @@ import kotlin.concurrent.thread
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+    private val mainViewModel: MainViewModel by viewModels()
+
     private val navHostFragment by lazy { supportFragmentManager.findFragmentById(R.id.mainFragmentContainerView) as NavHostFragment }
     private val navController by lazy { navHostFragment.navController }
-    private val auth by lazy { Firebase.auth }
-
-    var isReady = false
 
     override fun preLoad() {
         installSplashScreen()
@@ -39,13 +39,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun init() {
         binding.activity = this
 
+        setupToolbar()
         setupBottomNav()
         setUpSplashScreen()
     }
 
-    private fun setupBottomNav() {
-        supportActionBar?.hide()
+    private fun setupToolbar() = with(binding.toolbar) {
+        setTitleTextColor(resources.getColor(R.color.white, theme))
+        setSubtitleTextColor(resources.getColor(R.color.white, theme))
+        setSupportActionBar(this)
+    }
 
+    private fun setupBottomNav() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.homeFragment,
@@ -70,7 +75,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             object : ViewTreeObserver.OnPreDrawListener {
                 override fun onPreDraw(): Boolean {
                     // Check if the initial data is ready.
-                    return if (isReady) {
+                    return if (mainViewModel.isReady) {
                         // The content is ready; start drawing.
                         content.viewTreeObserver.removeOnPreDrawListener(this)
                         true
@@ -83,7 +88,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         )
         CoroutineScope(Dispatchers.IO).launch {
             delay(1000)
-            isReady = true
+            mainViewModel.isReady = true
         }
     }
 

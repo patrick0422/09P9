@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.yang.a09p9.presentation.user.login.LoginFragment"
+        android:name="com.yang.a09p9.presentation.user.sign_in.SignInFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_sign_in" >
         <action
             android:id="@+id/action_loginFragment_to_registrationFragment"
             app:destination="@id/registrationFragment"
@@ -21,9 +21,9 @@
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.yang.a09p9.presentation.user.registration.RegistrationFragment"
+        android:name="com.yang.a09p9.presentation.user.sign_up.SignUpFragment"
         android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" >
+        tools:layout="@layout/fragment_sign_up" >
         <action
             android:id="@+id/action_registrationFragment_to_loginFragment"
             app:destination="@id/loginFragment"
