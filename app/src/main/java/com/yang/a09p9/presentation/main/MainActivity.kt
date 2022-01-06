@@ -39,13 +39,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun init() {
         binding.activity = this
 
+        setupToolbar()
         setupBottomNav()
         setUpSplashScreen()
     }
 
-    private fun setupBottomNav() {
-        supportActionBar?.hide()
+    private fun setupToolbar() {
+        binding.toolbar.setTitleTextColor(resources.getColor(R.color.white, theme))
+        setSupportActionBar(binding.toolbar)
+    }
 
+    private fun setupBottomNav() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.homeFragment,
