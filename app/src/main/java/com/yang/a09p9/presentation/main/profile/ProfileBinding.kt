@@ -18,14 +18,4 @@ object ProfileBinding {
             error(R.drawable.hamster)
         }
     }
-
-    @JvmStatic
-    @BindingAdapter("showVisibility")
-    fun showVisibility(button: Button, user: FirebaseUser) {
-        if (!user.isEmailVerified) {
-            button.visibility = View.VISIBLE
-        } else {
-            View.GONE
-        }
-    }
 }

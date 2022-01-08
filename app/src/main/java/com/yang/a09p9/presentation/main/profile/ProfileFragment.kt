@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseFragment
@@ -18,11 +19,20 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     override fun init() {
         binding.profileFragment = this
         binding.mainViewModel = mainViewModel
-        observeData()
 
-        mainViewModel.user?.getIdToken(false)?.addOnSuccessListener {
-            makeToast(it.token ?: "Token not found")
-        }
+        observeData() //FIXME 고쳐줘...
+
+        if (mainViewModel.auth.currentUser != null)
+            setVerificationButtonVisibility()
+    }
+
+    private fun setVerificationButtonVisibility() {
+        val isVerified = mainViewModel.auth.currentUser!!.isEmailVerified
+
+        if (isVerified)
+            binding.buttonVerification.visibility = View.INVISIBLE
+        else
+            binding.buttonVerification.visibility = View.VISIBLE
     }
 
     private fun observeData() {
