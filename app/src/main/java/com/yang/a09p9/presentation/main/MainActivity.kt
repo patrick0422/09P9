@@ -42,6 +42,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         setupToolbar()
         setupBottomNav()
         setUpSplashScreen()
+        observeData()
+    }
+
+    private fun observeData() {
+
     }
 
     private fun setupToolbar() = with(binding.toolbar) {

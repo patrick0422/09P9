@@ -5,9 +5,7 @@ import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.fragment.app.viewModels
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import androidx.fragment.app.activityViewModels
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseFragment
 import com.yang.a09p9.databinding.FragmentProfileBinding
@@ -15,10 +13,29 @@ import com.yang.a09p9.presentation.main.MainViewModel
 import com.yang.a09p9.presentation.user.UserActivity
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile) {
-    private val mainViewModel: MainViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun init() {
         binding.profileFragment = this
+        binding.mainViewModel = mainViewModel
+        observeData()
+
+        mainViewModel.user?.getIdToken(false)?.addOnSuccessListener {
+            makeToast(it.token ?: "Token not found")
+        }
+    }
+
+    private fun observeData() {
+        mainViewModel.isEmailSent.observe(this, { isEmailSent ->
+            if (isEmailSent) {
+                makeToast(getString(R.string.message_verification_email_sent))
+            }
+        })
+    }
+
+    fun sendEmailVerification() {
+        binding.buttonVerification.isEnabled = false
+        mainViewModel.sendEmailVerification()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
