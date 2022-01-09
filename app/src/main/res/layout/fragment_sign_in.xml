@@ -7,7 +7,7 @@
 
         <variable
             name="signInFragment"
-            type="com.yang.a09p9.presentation.user.sign_in.SignInFragment" />
+            type="com.yang.a09p9.presentation.user.SignInFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

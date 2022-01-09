@@ -1,4 +1,4 @@
-package com.yang.a09p9.presentation.user.sign_up
+package com.yang.a09p9.presentation.user
 
 import android.content.Intent
 import android.util.Log

@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".presentation.user.sign_up.SignUpFragment">
+    tools:context=".presentation.user.SignUpFragment">
 
     <data>
 
         <variable
             name="signUpFragment"
-            type="com.yang.a09p9.presentation.user.sign_up.SignUpFragment" />
+            type="com.yang.a09p9.presentation.user.SignUpFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
