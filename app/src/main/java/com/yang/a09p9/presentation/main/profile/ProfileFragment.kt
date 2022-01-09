@@ -43,11 +43,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         })
     }
 
-    fun sendEmailVerification() {
-        binding.buttonVerification.isEnabled = false
-        mainViewModel.sendEmailVerification()
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_profile ,menu)
     }
