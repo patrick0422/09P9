@@ -123,7 +123,7 @@ class SignUpFragment :
         textPasswordCheckWarning.visibility = if (isVisible) View.VISIBLE else View.GONE
     }
 
-    fun toLogin() = findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
+    fun toLogin() = findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
 
-    fun toTerms() = findNavController().navigate(R.id.action_registrationFragment_to_termsFragment)
+    fun toTerms() = findNavController().navigate(R.id.action_signUpFragment_to_termsFragment)
 }

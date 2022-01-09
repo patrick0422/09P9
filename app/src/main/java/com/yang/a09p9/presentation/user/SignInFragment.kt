@@ -27,7 +27,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
         }
     }
 
-    fun toRegister() = findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
+    fun toRegister() = findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
 
     fun onLogin() {
         val emailInput = binding.editEmail.text.toString()
