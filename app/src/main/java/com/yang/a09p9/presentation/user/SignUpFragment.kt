@@ -1,4 +1,4 @@
-package com.yang.a09p9.presentation.user.sign_up
+package com.yang.a09p9.presentation.user
 
 import android.content.Intent
 import android.util.Log
@@ -59,9 +59,8 @@ class SignUpFragment :
                     displayName = name
                 }
 
-                auth.currentUser!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
-                    if (task.isSuccessful)
-                        Log.d(TAG, "register: update complete")
+                auth.currentUser!!.updateProfile(profileUpdates).addOnSuccessListener {
+                    Log.d(TAG, "register: profile updated.")
                 }
 
                 startActivity(Intent(activity, MainActivity::class.java))
@@ -123,7 +122,7 @@ class SignUpFragment :
         textPasswordCheckWarning.visibility = if (isVisible) View.VISIBLE else View.GONE
     }
 
-    fun toLogin() = findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
+    fun toLogin() = findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
 
-    fun toTerms() = findNavController().navigate(R.id.action_registrationFragment_to_termsFragment)
+    fun toTerms() = findNavController().navigate(R.id.action_signUpFragment_to_termsFragment)
 }

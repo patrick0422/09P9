@@ -7,24 +7,50 @@
         <variable
             name="profileFragment"
             type="com.yang.a09p9.presentation.main.profile.ProfileFragment" />
+        <variable
+            name="mainViewModel"
+            type="com.yang.a09p9.presentation.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="24dp"
         tools:context=".presentation.main.profile.ProfileFragment">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageUserProfile"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/highton"
+            android:src="@drawable/hamster"
+            loadImageFromUrl="@{mainViewModel.auth.currentUser.photoUrl}"
             app:civ_border_color="@color/blue_09p9"
-            app:civ_border_width="2dp"
+            app:civ_border_width="3dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/textUserName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@{mainViewModel.auth.currentUser.displayName}"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@id/imageUserProfile"
+            app:layout_constraintTop_toTopOf="@+id/imageUserProfile" />
+
+        <TextView
+            android:id="@+id/textUserEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{mainViewModel.auth.currentUser.email}"
+            app:layout_constraintEnd_toEndOf="@+id/textUserName"
+            app:layout_constraintStart_toStartOf="@+id/textUserName"
+            app:layout_constraintTop_toBottomOf="@+id/textUserName" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

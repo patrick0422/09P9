@@ -14,6 +14,6 @@ class TermsFragment : BaseFragment<FragmentTermsBinding>(R.layout.fragment_terms
     }
 
     fun onConfirm() {
-        findNavController().navigate(R.id.action_termsFragment_to_registrationFragment)
+        findNavController().navigate(R.id.action_termsFragment_to_signUpFragment)
     }
 }
