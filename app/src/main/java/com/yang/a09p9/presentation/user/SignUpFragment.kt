@@ -59,9 +59,8 @@ class SignUpFragment :
                     displayName = name
                 }
 
-                auth.currentUser!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
-                    if (task.isSuccessful)
-                        Log.d(TAG, "register: update complete")
+                auth.currentUser!!.updateProfile(profileUpdates).addOnSuccessListener {
+                    Log.d(TAG, "register: profile updated.")
                 }
 
                 startActivity(Intent(activity, MainActivity::class.java))
