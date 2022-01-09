@@ -19,28 +19,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     override fun init() {
         binding.profileFragment = this
         binding.mainViewModel = mainViewModel
-
-        observeData() //FIXME 고쳐줘...
-
-        if (mainViewModel.auth.currentUser != null)
-            setVerificationButtonVisibility()
-    }
-
-    private fun setVerificationButtonVisibility() {
-        val isVerified = mainViewModel.auth.currentUser!!.isEmailVerified
-
-        if (isVerified)
-            binding.buttonVerification.visibility = View.INVISIBLE
-        else
-            binding.buttonVerification.visibility = View.VISIBLE
-    }
-
-    private fun observeData() {
-        mainViewModel.isEmailSent.observe(this, { isEmailSent ->
-            if (isEmailSent) {
-                makeToast(getString(R.string.message_verification_email_sent))
-            }
-        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
