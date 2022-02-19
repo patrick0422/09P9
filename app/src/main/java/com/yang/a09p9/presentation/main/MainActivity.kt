@@ -12,8 +12,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.yang.a09p9.R
 import com.yang.a09p9.base.BaseActivity
 import com.yang.a09p9.databinding.ActivityMainBinding
@@ -22,7 +20,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.concurrent.thread
 
 
 @AndroidEntryPoint
